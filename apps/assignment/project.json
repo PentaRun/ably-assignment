@@ -1,0 +1,51 @@
+{
+  "root": "apps/assignment",
+  "sourceRoot": "apps/assignment",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/assignment",
+        "outputPath": "dist/apps/assignment"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "assignment:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "assignment:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "assignment:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/assignment"],
+      "options": {
+        "jestConfig": "apps/assignment/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}
